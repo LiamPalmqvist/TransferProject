@@ -13,10 +13,10 @@ def insert(self, nameF, nameL, seatType, showID, seatBooked, phoneNum, eMail):
     # cur.execute("SELECT * FROM TransferTable")
 
 
-def getSeats():
+def getSeats(showID):
     con = sqlite3.connect("transferDB.db")
     cur = con.cursor()
-    cur.execute("SELECT seatBooked FROM transferTable")
+    cur.execute("SELECT seatBooked FROM transferTable WHERE showID = "+showID)
     seatsTuple = cur.fetchall()
     seatsTaken = []
     for i in seatsTuple:
