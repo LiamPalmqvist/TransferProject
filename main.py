@@ -2,7 +2,6 @@ from tkinter import *
 from tkinter.ttk import *
 import DatabaseHandler
 
-showID = 1
 
 class SeatsView:
 
@@ -27,7 +26,6 @@ class SeatsView:
                 newButton.grid(row=i + 1, column=f + 1)
 
     def __init__(self, master):
-
 
         # Defining config within the master window
         master.configure(bg='ivory2')
