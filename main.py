@@ -1,13 +1,14 @@
 from tkinter import *
 from tkinter.ttk import *
 import DatabaseHandler
+import SQLiteShow
 
 LARGE_FONT = ("Verdana", 12)
 
 
 class SeatsView(Tk):
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self):
         Tk.__init__(self)
         window = Frame(self)
 
@@ -49,7 +50,7 @@ class SeatsOne(Frame):
         DatabaseHandler.insert(self, nameF, nameL, seatType, 0, seatBooked, mobile, email)
 
     def seats(self, alph, frame2b, showID):
-        seatsTaken = DatabaseHandler.getSeats(showID)
+        seatsTaken = DatabaseHandler.getSeats(showID, False)
         for i in range(10):
             for f in range(20):
                 newButton = Radiobutton(frame2b)
@@ -58,6 +59,8 @@ class SeatsOne(Frame):
                     newButton.config(state=DISABLED)
 
                 newButton.grid(row=i + 1, column=f + 1)
+        self.radioSelect.get()
+        self.radioSelect.set(' ')
 
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
@@ -118,7 +121,6 @@ class SeatsOne(Frame):
 
         self.radioSelect = StringVar(parent)
         self.seats(alph, frame2b, "0")
-        self.radioSelect.set(' ')
 
         # Showing the selected seat when the radio buttons are pressed
         seatLabel = Label(frame2ca)
@@ -178,7 +180,7 @@ class SeatsOne(Frame):
 
         # Finalise Button
         bookButton = Button(frame2d)
-        bookButton.config(text="BOOK", command=lambda: self.book())
+        bookButton.config(text="BOOK", command=lambda: [self.book(), self.seats(alph, frame2b, "0")])
         bookButton.grid(row=1, column=0)
 
         # Switching Button
@@ -189,6 +191,11 @@ class SeatsOne(Frame):
         show3 = Button(frame2d)
         show3.config(text="SHOW 3", command=lambda: controller.show_frame(SeatsThree))
         show3.grid(row=3, column=0)
+
+        # Button that shows the SQLite table
+        tableButton = Button(frame2d)
+        tableButton.config(text="Show Bookings", command=lambda: SQLiteShow.main())
+        tableButton.grid(row=4, column=0)
 
 
 class SeatsTwo(Frame):
@@ -203,7 +210,7 @@ class SeatsTwo(Frame):
         DatabaseHandler.insert(self, nameF, nameL, seatType, 1, seatBooked, mobile, email)
 
     def seats(self, alph, frame2b, showID):
-        seatsTaken = DatabaseHandler.getSeats(showID)
+        seatsTaken = DatabaseHandler.getSeats(showID, False)
         for i in range(10):
             for f in range(20):
                 newButton = Radiobutton(frame2b)
@@ -334,7 +341,7 @@ class SeatsTwo(Frame):
 
         # Finalise Button
         bookButton = Button(frame2d)
-        bookButton.config(text="BOOK", command=lambda: self.book())
+        bookButton.config(text="BOOK", command=lambda: [self.book(), self.seats(alph, frame2b, "1")])
         bookButton.grid(row=1, column=0)
 
         # Switching Button
@@ -345,6 +352,12 @@ class SeatsTwo(Frame):
         show3 = Button(frame2d)
         show3.config(text="SHOW 3", command=lambda: controller.show_frame(SeatsThree))
         show3.grid(row=3, column=0)
+
+        # Button that shows the SQLite table
+        tableButton = Button(frame2d)
+        tableButton.config(text="Show Bookings", command=lambda: SQLiteShow.main())
+        tableButton.grid(row=4, column=0)
+
 
 class SeatsThree(Frame):
 
@@ -358,7 +371,7 @@ class SeatsThree(Frame):
         DatabaseHandler.insert(self, nameF, nameL, seatType, 2, seatBooked, mobile, email)
 
     def seats(self, alph, frame2b, showID):
-        seatsTaken = DatabaseHandler.getSeats(showID)
+        seatsTaken = DatabaseHandler.getSeats(showID, False)
         for i in range(10):
             for f in range(20):
                 newButton = Radiobutton(frame2b)
@@ -489,7 +502,7 @@ class SeatsThree(Frame):
 
         # Finalise Button
         bookButton = Button(frame2d)
-        bookButton.config(text="BOOK", command=lambda: self.book())
+        bookButton.config(text="BOOK", command=lambda: [self.book(), self.seats(alph, frame2b, "2")])
         bookButton.grid(row=1, column=0)
 
         # Switching Button
@@ -500,6 +513,12 @@ class SeatsThree(Frame):
         show2 = Button(frame2d)
         show2.config(text="SHOW 2", command=lambda: controller.show_frame(SeatsTwo))
         show2.grid(row=3, column=0)
+
+        # Button that shows the SQLite table
+        tableButton = Button(frame2d)
+        tableButton.config(text="Show Bookings", command=lambda: SQLiteShow.main())
+        tableButton.grid(row=4, column=0)
+
 
 app = SeatsView()
 app.mainloop()

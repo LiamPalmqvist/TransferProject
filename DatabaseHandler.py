@@ -6,20 +6,28 @@ def insert(self, nameF, nameL, seatType, showID, seatBooked, phoneNum, eMail):
     cur = con.cursor()
     cur.execute(
         "INSERT INTO TransferTable (nameF, nameL, seatType, showID, seatBooked, phoneNum, eMail) VALUES ('" + nameF + "', '" + nameL + "', " + str(
-            seatType) + ", " + str(showID) + ", '" + seatBooked + "', '" + phoneNum + "', '" + eMail + "')")
+seatType) + ", " + str(showID) + ", '" + seatBooked + "', '" + phoneNum + "', '" + eMail + "')")
 
     con.commit()
 
     # cur.execute("SELECT * FROM TransferTable")
 
 
-def getSeats(showID):
+def getSeats(showID, getForLayout):
     con = sqlite3.connect("transferDB.db")
     cur = con.cursor()
-    cur.execute("SELECT seatBooked FROM transferTable WHERE showID = "+showID)
-    seatsTuple = cur.fetchall()
-    seatsTaken = []
-    for i in seatsTuple:
-        seatsTaken.append(''.join(i))
+    if not getForLayout:
+        cur.execute("SELECT seatBooked FROM transferTable WHERE showID = "+showID)
+        seatsTuple = cur.fetchall()
+        seatsTaken = []
+        for i in seatsTuple:
+            seatsTaken.append(''.join(i))
 
-    return seatsTaken
+        return seatsTaken
+
+    else:
+        cur.execute("SELECT * FROM transferTable WHERE showID = " + showID)
+        seatsTuple = cur.fetchall()
+
+        return seatsTuple
+
