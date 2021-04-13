@@ -59,7 +59,6 @@ class SeatsOne(Frame):
                     newButton.config(state=DISABLED)
 
                 newButton.grid(row=i + 1, column=f + 1)
-        self.radioSelect.get()
         self.radioSelect.set(' ')
 
     def __init__(self, parent, controller):
@@ -194,7 +193,7 @@ class SeatsOne(Frame):
 
         # Button that shows the SQLite table
         tableButton = Button(frame2d)
-        tableButton.config(text="Show Bookings", command=lambda: SQLiteShow.main())
+        tableButton.config(text="Show Booking Information", command=lambda: SQLiteShow.main())
         tableButton.grid(row=4, column=0)
 
 
@@ -219,6 +218,7 @@ class SeatsTwo(Frame):
                     newButton.config(state=DISABLED)
 
                 newButton.grid(row=i + 1, column=f + 1)
+        self.radioSelect.set(' ')
 
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
@@ -355,7 +355,7 @@ class SeatsTwo(Frame):
 
         # Button that shows the SQLite table
         tableButton = Button(frame2d)
-        tableButton.config(text="Show Bookings", command=lambda: SQLiteShow.main())
+        tableButton.config(text="Show Booking Information", command=lambda: SQLiteShow.main())
         tableButton.grid(row=4, column=0)
 
 
@@ -380,6 +380,7 @@ class SeatsThree(Frame):
                     newButton.config(state=DISABLED)
 
                 newButton.grid(row=i + 1, column=f + 1)
+        self.radioSelect.set(' ')
 
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
@@ -516,7 +517,7 @@ class SeatsThree(Frame):
 
         # Button that shows the SQLite table
         tableButton = Button(frame2d)
-        tableButton.config(text="Show Bookings", command=lambda: SQLiteShow.main())
+        tableButton.config(text="Show Booking Information", command=lambda: SQLiteShow.main())
         tableButton.grid(row=4, column=0)
 
 

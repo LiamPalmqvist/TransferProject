@@ -1,12 +1,11 @@
 import sqlite3
 
-
 def insert(self, nameF, nameL, seatType, showID, seatBooked, phoneNum, eMail):
     con = sqlite3.connect("transferDB.db")
     cur = con.cursor()
     cur.execute(
-        "INSERT INTO TransferTable (nameF, nameL, seatType, showID, seatBooked, phoneNum, eMail) VALUES ('" + nameF + "', '" + nameL + "', " + str(
-seatType) + ", " + str(showID) + ", '" + seatBooked + "', '" + phoneNum + "', '" + eMail + "')")
+        "INSERT INTO TransferTable (nameF, nameL, seatType, showID, seatBooked, phoneNum, eMail) VALUES ('" + nameF.title() + "', '" + nameL.title() + "', " + str(
+            seatType) + ", " + str(showID) + ", '" + seatBooked + "', '" + phoneNum + "', '" + eMail + "')")
 
     con.commit()
 
@@ -17,7 +16,7 @@ def getSeats(showID, getForLayout):
     con = sqlite3.connect("transferDB.db")
     cur = con.cursor()
     if not getForLayout:
-        cur.execute("SELECT seatBooked FROM transferTable WHERE showID = "+showID)
+        cur.execute("SELECT seatBooked FROM transferTable WHERE showID = " + showID)
         seatsTuple = cur.fetchall()
         seatsTaken = []
         for i in seatsTuple:
@@ -26,8 +25,7 @@ def getSeats(showID, getForLayout):
         return seatsTaken
 
     else:
-        cur.execute("SELECT * FROM transferTable WHERE showID = " + showID)
+        cur.execute("SELECT * FROM transferTable WHERE showID = " + showID + " ORDER BY nameL")
         seatsTuple = cur.fetchall()
 
         return seatsTuple
-
