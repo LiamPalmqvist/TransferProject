@@ -7,7 +7,7 @@ class sqliteWindow(Tk):
 
     @staticmethod
     def seats(frame, showID):
-        labelLen = [2, 10, 13, 2, 4, 13, 24]
+        labelLen = [2, 10, 13, 15, 4, 13, 24]
         seatsList = DatabaseHandler.getSeats(showID, True)
         names = ["Booking ID:", "First Name:", "Last Name:", "Seat Type:", "Seat Booked:", "Phone Number:",
                  "E-mail:"]
@@ -24,7 +24,14 @@ class sqliteWindow(Tk):
         for i in range(len(seatsList)):
             for f in range(7):
                 newText = Label(frame)
-                newText.config(text=seatsList[i][f], width=labelLen[f])
+                if seatsList[i][f] == 0:
+                    newText.config(text="Normal Seat", width=labelLen[f])
+                elif seatsList[i][f] == 1:
+                    newText.config(text="Discounted Seat", width=labelLen[f])
+                elif seatsList[i][f] == 2:
+                    newText.config(text="Special Seat", width=labelLen[f])
+                else:
+                    newText.config(text=seatsList[i][f], width=labelLen[f])
                 newText.grid(row=i + 2, column=f, sticky='w')
 
     @staticmethod

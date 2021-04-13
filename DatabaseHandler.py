@@ -28,6 +28,6 @@ def getSeats(showID, getForLayout):
         cur.execute("SELECT bookingID, nameF, nameL, seatType, seatBooked, phoneNum, eMail FROM transferTable WHERE showID = " + showID + " ORDER BY nameL")
         seatsTuple = cur.fetchall()
 
-        print(seatsTuple)
+        #print(seatsTuple)
 
         return seatsTuple
