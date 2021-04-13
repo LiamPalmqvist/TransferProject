@@ -47,7 +47,7 @@ class SeatsOne(Frame):
         nameF = self.fNameEntry.get()
         nameL = self.lNameEntry.get()
         mobile = self.numberEntry.get()
-        DatabaseHandler.insert(self, nameF, nameL, seatType, 0, seatBooked, mobile, email)
+        DatabaseHandler.insert(nameF, nameL, seatType, 0, seatBooked, mobile, email)
 
     def seats(self, alph, frame2b, showID):
         seatsTaken = DatabaseHandler.getSeats(showID, False)
@@ -206,7 +206,7 @@ class SeatsTwo(Frame):
         nameF = self.fNameEntry.get()
         nameL = self.lNameEntry.get()
         mobile = self.numberEntry.get()
-        DatabaseHandler.insert(self, nameF, nameL, seatType, 1, seatBooked, mobile, email)
+        DatabaseHandler.insert(nameF, nameL, seatType, 1, seatBooked, mobile, email)
 
     def seats(self, alph, frame2b, showID):
         seatsTaken = DatabaseHandler.getSeats(showID, False)
@@ -368,7 +368,7 @@ class SeatsThree(Frame):
         nameF = self.fNameEntry.get()
         nameL = self.lNameEntry.get()
         mobile = self.numberEntry.get()
-        DatabaseHandler.insert(self, nameF, nameL, seatType, 2, seatBooked, mobile, email)
+        DatabaseHandler.insert(nameF, nameL, seatType, 2, seatBooked, mobile, email)
 
     def seats(self, alph, frame2b, showID):
         seatsTaken = DatabaseHandler.getSeats(showID, False)

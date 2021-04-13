@@ -7,12 +7,12 @@ class sqliteWindow(Tk):
 
     @staticmethod
     def seats(frame, showID):
-        labelLen = [2, 10, 13, 2, 2, 4, 13, 24]
+        labelLen = [2, 10, 13, 2, 4, 13, 24]
         seatsList = DatabaseHandler.getSeats(showID, True)
-        names = ["Booking ID:", "First Name:", "Last Name:", "Seat Type:", "Show ID:", "Seat Booked:", "Phone Number:",
+        names = ["Booking ID:", "First Name:", "Last Name:", "Seat Type:", "Seat Booked:", "Phone Number:",
                  "E-mail:"]
 
-        for i in range(8):
+        for i in range(7):
             wordLabel = Label(frame)
             wordLabel.config(text=names[i], width=len(names[i]))
             wordLabel.grid(row=0, column=i, sticky='w')
@@ -22,12 +22,13 @@ class sqliteWindow(Tk):
         blankLabel.grid(row=1, column=0)
 
         for i in range(len(seatsList)):
-            for f in range(8):
+            for f in range(7):
                 newText = Label(frame)
                 newText.config(text=seatsList[i][f], width=labelLen[f])
                 newText.grid(row=i + 2, column=f, sticky='w')
 
-    def getRev(self, showList):
+    @staticmethod
+    def getRev(showList):
         revenue = 0
         for i in range(len(showList)):
             if showList[i][3] == 0:
@@ -144,5 +145,3 @@ class sqliteWindow(Tk):
 def main():
     app = sqliteWindow()
     app.mainloop()
-
-

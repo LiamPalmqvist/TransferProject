@@ -1,6 +1,6 @@
 import sqlite3
 
-def insert(self, nameF, nameL, seatType, showID, seatBooked, phoneNum, eMail):
+def insert(nameF, nameL, seatType, showID, seatBooked, phoneNum, eMail):
     con = sqlite3.connect("transferDB.db")
     cur = con.cursor()
     cur.execute(
@@ -25,7 +25,9 @@ def getSeats(showID, getForLayout):
         return seatsTaken
 
     else:
-        cur.execute("SELECT * FROM transferTable WHERE showID = " + showID + " ORDER BY nameL")
+        cur.execute("SELECT bookingID, nameF, nameL, seatType, seatBooked, phoneNum, eMail FROM transferTable WHERE showID = " + showID + " ORDER BY nameL")
         seatsTuple = cur.fetchall()
+
+        print(seatsTuple)
 
         return seatsTuple
