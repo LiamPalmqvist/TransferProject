@@ -1,5 +1,7 @@
+# Imports
 import sqlite3
 
+# Inserts the data into the SQLite table known as transferDB.db
 def insert(nameF, nameL, seatType, showID, seatBooked, phoneNum, eMail):
     con = sqlite3.connect("transferDB.db")
     cur = con.cursor()
@@ -11,7 +13,7 @@ def insert(nameF, nameL, seatType, showID, seatBooked, phoneNum, eMail):
 
     # cur.execute("SELECT * FROM TransferTable")
 
-
+# This gets the seatIDs for the shows from the SQLite table known as transferDB.db
 def getSeats(showID, getForLayout):
     con = sqlite3.connect("transferDB.db")
     cur = con.cursor()
@@ -24,10 +26,18 @@ def getSeats(showID, getForLayout):
 
         return seatsTaken
 
+    # Function for the SQLiteShow.py file to get the entire Database instead of just the seat IDs
     else:
         cur.execute("SELECT bookingID, nameF, nameL, seatType, seatBooked, phoneNum, eMail FROM transferTable WHERE showID = " + showID + " ORDER BY nameL")
         seatsTuple = cur.fetchall()
 
-        #print(seatsTuple)
-
         return seatsTuple
+
+def getSeatsSearch(name):  # This gets the seats for the layout dependant on the name
+    con = sqlite3.connect("transferDB.db")
+    cur = con.cursor()
+
+    cur.execute("SELECT bookingID, nameF, nameL, seatType, seatBooked, phoneNum, eMail FROM transferTable WHERE nameL = '" + name + "'")
+    seatsTuple = cur.fetchall()
+
+    return seatsTuple

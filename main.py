@@ -1,3 +1,4 @@
+# Imports
 from tkinter import *
 from tkinter.ttk import *
 import DatabaseHandler
@@ -5,7 +6,7 @@ import SQLiteShow
 
 LARGE_FONT = ("Verdana", 12)
 
-
+# Setting up the main view
 class SeatsView(Tk):
 
     def __init__(self):
@@ -38,9 +39,10 @@ class SeatsView(Tk):
         frame.tkraise()
 
 
+# This has been set up to work like a page on a web browser
 class SeatsOne(Frame):
 
-    def book(self):
+    def book(self):  # Function to book the seats
         seatBooked = self.radioSelect.get()
         seatType = self.ticketType.get()
         email = self.emailEntry.get()
@@ -49,7 +51,7 @@ class SeatsOne(Frame):
         mobile = self.numberEntry.get()
         DatabaseHandler.insert(nameF, nameL, seatType, 0, seatBooked, mobile, email)
 
-    def seats(self, alph, frame2b, showID):
+    def seats(self, alph, frame2b, showID):  # This gets the seats and puts them into a layout to select from
         seatsTaken = DatabaseHandler.getSeats(showID, False)
         for i in range(10):
             for f in range(20):
@@ -199,7 +201,7 @@ class SeatsOne(Frame):
 
 class SeatsTwo(Frame):
 
-    def book(self):
+    def book(self):  # Function to book the seats
         seatBooked = self.radioSelect.get()
         seatType = self.ticketType.get()
         email = self.emailEntry.get()
@@ -208,7 +210,7 @@ class SeatsTwo(Frame):
         mobile = self.numberEntry.get()
         DatabaseHandler.insert(nameF, nameL, seatType, 1, seatBooked, mobile, email)
 
-    def seats(self, alph, frame2b, showID):
+    def seats(self, alph, frame2b, showID):  # This gets the seats and puts them into a layout to select from
         seatsTaken = DatabaseHandler.getSeats(showID, False)
         for i in range(10):
             for f in range(20):
@@ -361,7 +363,7 @@ class SeatsTwo(Frame):
 
 class SeatsThree(Frame):
 
-    def book(self):
+    def book(self):  # Function to book the seats
         seatBooked = self.radioSelect.get()
         seatType = self.ticketType.get()
         email = self.emailEntry.get()
@@ -370,7 +372,7 @@ class SeatsThree(Frame):
         mobile = self.numberEntry.get()
         DatabaseHandler.insert(nameF, nameL, seatType, 2, seatBooked, mobile, email)
 
-    def seats(self, alph, frame2b, showID):
+    def seats(self, alph, frame2b, showID):  # This gets the seats and puts them into a layout to select from
         seatsTaken = DatabaseHandler.getSeats(showID, False)
         for i in range(10):
             for f in range(20):
