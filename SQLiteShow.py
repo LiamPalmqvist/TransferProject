@@ -4,7 +4,7 @@ from tkinter.ttk import *
 import DatabaseHandler
 
 
-class sqliteWindow(Tk):
+class SqliteWindow(Tk):
 
     @staticmethod
     def seats(frame, showID):  # This gets the seats for the layout
@@ -46,7 +46,7 @@ class sqliteWindow(Tk):
 
     @staticmethod
     def seatsForSearch(frame, name):  # This gets the seats for the layout dependant on the name
-        labelLen = [2, 10, 13, 15, 4, 13, 24]
+        labelLen = [4, 10, 13, 15, 4, 13, 24]
 
         seatsList = DatabaseHandler.getSeatsSearch(name)
         for i in seatsList:
@@ -233,5 +233,5 @@ class sqliteWindow(Tk):
 
 
 def main():
-    app = sqliteWindow()
+    app = SqliteWindow()
     app.mainloop()

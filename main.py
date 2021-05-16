@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter.ttk import *
 import DatabaseHandler
 import SQLiteShow
+import mailSender
 
 LARGE_FONT = ("Verdana", 12)
 
@@ -50,6 +51,7 @@ class SeatsOne(Frame):
         nameL = self.lNameEntry.get()
         mobile = self.numberEntry.get()
         DatabaseHandler.insert(nameF, nameL, seatType, 0, seatBooked, mobile, email)
+        mailSender.sendMail(email, nameF, nameL, seatBooked, 0, seatType)
 
     def seats(self, alph, frame2b, showID):  # This gets the seats and puts them into a layout to select from
         seatsTaken = DatabaseHandler.getSeats(showID, False)
@@ -209,6 +211,7 @@ class SeatsTwo(Frame):
         nameL = self.lNameEntry.get()
         mobile = self.numberEntry.get()
         DatabaseHandler.insert(nameF, nameL, seatType, 1, seatBooked, mobile, email)
+        mailSender.sendMail(email, nameF, nameL, seatBooked, 1, seatType)
 
     def seats(self, alph, frame2b, showID):  # This gets the seats and puts them into a layout to select from
         seatsTaken = DatabaseHandler.getSeats(showID, False)
@@ -371,6 +374,7 @@ class SeatsThree(Frame):
         nameL = self.lNameEntry.get()
         mobile = self.numberEntry.get()
         DatabaseHandler.insert(nameF, nameL, seatType, 2, seatBooked, mobile, email)
+        mailSender.sendMail(email, nameF, nameL, seatBooked, 2, seatType)
 
     def seats(self, alph, frame2b, showID):  # This gets the seats and puts them into a layout to select from
         seatsTaken = DatabaseHandler.getSeats(showID, False)
